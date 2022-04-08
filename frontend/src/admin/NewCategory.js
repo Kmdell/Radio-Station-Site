@@ -10,8 +10,8 @@ function NewCategory(){
   const [validated, setValidated] = React.useState(false);
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    const _form = event.currentTarget;
+    if (_form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } 
@@ -19,16 +19,17 @@ function NewCategory(){
       const reqOptions = {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: form.name,
-          description: form.description,
-        }),
+          name: form.name.toString(),
+          description: form.description.toString(),
+        })
       };
-      fetch('http://localhost:3001/category', reqOptions)
+      console.log(reqOptions)
+      fetch('http://192.168.122.139:3001/category', reqOptions)
         .then((res) => res.json())
+        .then((data) => console.log(data))
     }
     setValidated(true);
   };

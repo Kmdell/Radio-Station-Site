@@ -12,13 +12,13 @@ const app = express();
 const prisma = new PrismaClient();
 const jsonParser = bodyParser.json();
 
-var corsOptions = {
-  'origin': "*",
-  'Access-Control-Allow-Origin': "*",
-  'methods': "GET,HEAD,PUT,PATCH,POST,DELETE",
-  'preflightContinue': false,
-  'optionsSuccessStatus': 204
+const corsOptions = {
+  origin: "*",
+  methods: "GET,POST,PUT",
+  "optionSuccessStatus": 204,
 }
+
+app.use(cors(corsOptions));
 
 // get retrieves
 // random api call to test backend server
@@ -64,7 +64,7 @@ app.get("/categories", async (req, res) => {
   res.json(categories);
 });
 
-// retrieve the category with id
+// retrieve the category withttp://localhost:3001/categoryh id
 app.get("/category:id", async (req, res) => {
   const category = await prisma.category.findUnique({
     where: {
@@ -163,7 +163,7 @@ app.post("/audio", jsonParser, async (req, res) => {
 });
 
 // creates a category
-app.post("/category", cors(corsOptions), jsonParser, async (req, res) => {
+app.post("/category", jsonParser, async (req, res) => {
   console.log("Request Body:")
   console.log(req.body)
   console.log("\n")
@@ -174,7 +174,7 @@ app.post("/category", cors(corsOptions), jsonParser, async (req, res) => {
       'description': req.body.description,
     }
   });
-  res.send("System Received a POST on creating a category");
+  res.status(200).send("Success made the system work");
 });
 
 // creates a genre
