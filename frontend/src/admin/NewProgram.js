@@ -100,12 +100,14 @@ function NewProgram(){
                     <DropdownMultiselect options={generateArray} name="categories" />
                   </Form.Group>
                 </Col>
-                <Col>
-                <Form.Group className="mb-3" controlId="formCategories">
+                
+                {/* <Col>
+                  <Form.Group className="mb-3" controlId="formCategories">
                     <Form.Label>Genres</Form.Label>
                     <DropdownMultiselect options={generateArray} name="categories" />
                   </Form.Group>
-                </Col>
+                </Col> */}
+                  
               </Row>
             </Col>
             <Col>
